@@ -1,0 +1,208 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Tugas1;
+
+/**
+ *
+ * @author AFIF
+ */
+public class Balok extends Persegipanjang{
+    double tinggi;
+    
+    //konst
+    Balok(double p, double l, double t) {
+        super(p, l);
+        tinggi=t;
+    }
+    
+    double volume(){
+        return super.luas()*tinggi;
+    }
+    double luasPermukaan(){
+        double lp=((2*super.luas())+(2*super.lebar*tinggi)+(2*super.panjang*tinggi));
+        return lp; 
+    }
+    
+}
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Tugas1;
+
+/**
+ *
+ * @author AFIF
+ */
+public class Lingkaran {
+   double jari;
+   
+   //kons
+
+    public Lingkaran(double r) {
+        jari=r;
+    }
+   double luas(){
+       return Math.PI*jari*jari;
+   }
+   double keliling(){
+       return (Math.PI*(2*jari));
+   }
+    
+    
+}
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Tugas1;
+
+/**
+ *
+ * @author AFIF
+ */
+public interface MenghitungBidang {
+    double luas();
+    double keliling();
+}
+             /*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Tugas1;
+
+/**
+ *
+ * @author AFIF
+ */
+public interface MenghitungRuang {
+        double volumeTabung();
+        double volumeBalok();
+        
+    
+}
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Tugas1;
+
+/**
+ *
+ * @author AFIF
+ */
+public class Persegipanjang implements MenghitungBidang{
+    double panjang, lebar;
+    
+    //konstruktor
+
+    public Persegipanjang(double p, double l) {
+    panjang=p;
+    lebar=l;
+    }
+    @Override
+    public double luas(){
+        return panjang*lebar;
+    }
+
+    @Override
+    public double keliling() {
+        return (2*(panjang+lebar));
+    }
+   
+}
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Tugas1;
+
+/**
+ *
+ * @author AFIF
+ */
+public class Tabung extends Lingkaran{
+    double tinggi;
+    
+    //konst
+    Tabung(double r, double tb){
+        super(r);
+        tinggi=tb;
+    }
+    
+    double volume(){
+        return super.luas()*tinggi;
+    }
+    double luasPermukaan(){
+        double lp=((super.luas()*2) + super.keliling()*tinggi);
+        return lp;
+    }
+}
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Tugas1;
+import java.util.*;
+
+/**
+ *
+ * @author AFIF
+ */
+public class main {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int pilih=0;
+        
+        while (pilih!=3) {            
+            System.out.println("===============");
+            System.out.println("program geometri");
+            System.out.println("===============");
+            System.out.println("1. Hitung Persegi panjang dan balok");
+            System.out.println("2. Hitung Lingkaran dan Tabung");
+            System.out.println("3. keluar");
+            pilih=input.nextInt();
+            
+            switch(pilih){
+                case 1:
+                    System.out.println("Masukan panjang : ");
+                    double p=input.nextDouble();
+                    System.out.println("Masukan lebar : ");
+                    double l=input.nextDouble();
+                    System.out.println("Masukan tinggi : ");
+                    double t=input.nextDouble();
+                    Persegipanjang pp = new Persegipanjang(p, l);
+                    Balok balok = new Balok(p, l, t);
+                    System.out.println("Luas Persegi panjang = " + pp.luas());
+                    System.out.println("Keliling Persegi panjang = " + pp.keliling());
+                    System.out.println("Volume balok = " + balok.volume());
+                    System.out.println("Luas permukaan Balok = " + balok.luasPermukaan());
+                    break;
+                    
+                case 2:
+                    System.out.println("Masukkan jari-jari : ");
+                    double r = input.nextDouble();
+                    System.out.println("Masukakan tinggi : ");
+                    var tb = input.nextDouble();
+                    Lingkaran lingkaran = new Lingkaran(r);
+                    Tabung tabung = new Tabung(r, tb);
+                    System.out.println("Luas lingkaran = "+ lingkaran.luas());
+                    System.out.println("Keliling lingkaran = " + lingkaran.keliling());
+                    System.out.println("Volume tabung = " + tabung.volume());
+                    System.out.println("Luas permukaan tabung = " + tabung.luasPermukaan());
+
+            }
+        }
+    }
+    
+}
